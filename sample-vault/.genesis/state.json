@@ -1,0 +1,9 @@
+{
+  "currentVaultPath": "E:\\Neural genesis\\sample-vault",
+  "lockedFiles": [
+    "00-constitution/instructions.md"
+  ],
+  "mountedFiles": [],
+  "targetRepoPath": "E:\\Neural genesis",
+  "mcpPort": 43110
+}

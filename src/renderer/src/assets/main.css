@@ -1,0 +1,538 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #0D0F12;
+    --bg-surface: #13161B;
+    --bg-elevated: #1A1E24;
+    --bg-hover: #222832;
+    --border-subtle: #22262E;
+    --border-active: #333A46;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    
+    --theme-accent: #10B981;
+    --theme-accent-bg: rgba(16, 185, 129, 0.15);
+
+    --accent-gold: #F59E0B;
+    --accent-gold-bg: rgba(245, 158, 11, 0.12);
+    --accent-emerald: #10B981;
+    --accent-emerald-bg: rgba(16, 185, 129, 0.12);
+    --accent-cyan: #06B6D4;
+    --accent-cyan-bg: rgba(6, 182, 212, 0.12);
+    --accent-danger: #EF4444;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--app-font, 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+    font-size: 13px;
+    line-height: 1.5;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Global theme classes dynamically overriding hardcoded hexes */
+  .bg-\[\#0D0F12\] { background-color: var(--bg-main) !important; }
+  .bg-\[\#13161B\] { background-color: var(--bg-surface) !important; }
+  .bg-\[\#16191F\] { background-color: var(--bg-surface) !important; }
+  .bg-\[\#1A1E24\] { background-color: var(--bg-elevated) !important; }
+  .hover\:bg-\[\#1A1E24\]:hover { background-color: var(--bg-elevated) !important; }
+  .hover\:bg-\[\#1A1E24\]\/40:hover { background-color: var(--bg-elevated) !important; opacity: 0.8; }
+  .hover\:bg-\[\#1A1E24\]\/50:hover { background-color: var(--bg-elevated) !important; opacity: 0.85; }
+  .hover\:bg-\[\#1A1E24\]\/60:hover { background-color: var(--bg-elevated) !important; opacity: 0.9; }
+  .hover\:bg-\[\#22262E\]:hover { background-color: var(--bg-hover) !important; }
+  .border-\[\#22262E\] { border-color: var(--border-subtle) !important; }
+  .hover\:border-\[\#22262E\]:hover { border-color: var(--border-active) !important; }
+  .hover\:border-slate-600:hover { border-color: var(--border-active) !important; }
+
+  /* Light theme text adjustments */
+  .light-theme .text-slate-100 { color: var(--text-primary) !important; }
+  .light-theme .text-slate-200 { color: var(--text-primary) !important; }
+  .light-theme .text-slate-300 { color: var(--text-secondary) !important; }
+  .light-theme .text-slate-400 { color: var(--text-muted) !important; }
+  .light-theme .text-slate-500 { color: #8c959f !important; }
+  .light-theme .text-slate-600 { color: #6e7781 !important; }
+  .light-theme pre { background-color: var(--bg-elevated) !important; color: var(--text-primary) !important; }
+
+  /* Custom high-craft scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-active);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+}
+
+/* CodeMirror 6 custom styling overrides */
+.cm-editor {
+  height: 100%;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Geist Mono', Consolas, monospace !important;
+  font-size: 13.5px;
+  background-color: var(--bg-main) !important;
+  color: var(--text-primary) !important;
+}
+
+.cm-editor .cm-scroller {
+  overflow: auto;
+  line-height: 1.65;
+  padding: 16px 20px;
+}
+
+.cm-editor.cm-focused {
+  outline: none !important;
+}
+
+.cm-gutters {
+  background-color: var(--bg-main) !important;
+  border-right: 1px solid var(--border-subtle) !important;
+  color: var(--text-muted) !important;
+}
+
+.cm-lineNumbers .cm-gutterElement {
+  padding: 0 12px 0 8px !important;
+  min-width: 32px;
+}
+
+/* MCP Semantic Gutter */
+.mcp-gutter-emerald {
+  border-left: 3px solid #10B981 !important;
+}
+
+.mcp-gutter-gray {
+  border-left: 3px solid #475569 !important;
+  opacity: 0.6;
+}
+
+/* Transclusion Card */
+.transclusion-card {
+  background: #141820;
+  border: 1px solid #06B6D440;
+  border-left: 3px solid #06B6D4;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 6px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+/* Google Stitch Lumina Material Tokens & Classes */
+:root {
+  --stitch-surface-dim: #cbdbf5;
+  --stitch-surface-container: #e5eeff;
+  --stitch-surface-variant: #d3e4fe;
+  --stitch-surface: #f8f9ff;
+  --stitch-secondary: #b4136d;
+  --stitch-surface-container-lowest: #ffffff;
+  --stitch-on-tertiary-fixed-variant: #3f465c;
+  --stitch-tertiary-fixed-dim: #bec6e0;
+  --stitch-background: #f8f9ff;
+  --stitch-error: #ba1a1a;
+  --stitch-surface-container-highest: #d3e4fe;
+  --stitch-on-surface-variant: #434655;
+  --stitch-inverse-primary: #b4c5ff;
+  --stitch-on-secondary-fixed-variant: #8c0053;
+  --stitch-on-primary: #ffffff;
+  --stitch-secondary-fixed: #ffd9e4;
+  --stitch-surface-bright: #f8f9ff;
+  --stitch-primary-container: #2563eb;
+  --stitch-on-secondary: #ffffff;
+  --stitch-tertiary-fixed: #dae2fd;
+  --stitch-outline-variant: #c3c6d7;
+  --stitch-on-primary-fixed: #00174b;
+  --stitch-tertiary: #4d556b;
+  --stitch-on-tertiary-fixed: #131b2e;
+  --stitch-inverse-on-surface: #eaf1ff;
+  --stitch-on-background: #0b1c30;
+  --stitch-on-tertiary-container: #eef0ff;
+  --stitch-on-tertiary: #ffffff;
+  --stitch-on-primary-container: #eeefff;
+  --stitch-secondary-container: #fd56a7;
+  --stitch-secondary-fixed-dim: #ffb0cd;
+  --stitch-outline: #737686;
+  --stitch-error-container: #ffdad6;
+  --stitch-surface-container-high: #dce9ff;
+  --stitch-primary: #004ac6;
+  --stitch-inverse-surface: #213145;
+  --stitch-primary-fixed: #dbe1ff;
+  --stitch-on-secondary-fixed: #3e0022;
+  --stitch-on-error: #ffffff;
+  --stitch-surface-container-low: #eff4ff;
+  --stitch-on-secondary-container: #600037;
+  --stitch-on-surface: #0b1c30;
+  --stitch-primary-fixed-dim: #b4c5ff;
+  --stitch-on-error-container: #93000a;
+  --stitch-surface-tint: #0053db;
+  --stitch-tertiary-container: #656d84;
+  --stitch-on-primary-fixed-variant: #003ea8;
+}
+
+.bg-surface { background-color: var(--stitch-surface); }
+.bg-surface-dim { background-color: var(--stitch-surface-dim); }
+.bg-surface-variant { background-color: var(--stitch-surface-variant); }
+.bg-surface-container { background-color: var(--stitch-surface-container); }
+.bg-surface-container-low { background-color: var(--stitch-surface-container-low); }
+.bg-surface-container-high { background-color: var(--stitch-surface-container-high); }
+.bg-surface-container-highest { background-color: var(--stitch-surface-container-highest); }
+.bg-surface-container-lowest { background-color: var(--stitch-surface-container-lowest); }
+.bg-primary { background-color: var(--stitch-primary); }
+.bg-primary-container { background-color: var(--stitch-primary-container); }
+.bg-primary-fixed { background-color: var(--stitch-primary-fixed); }
+.bg-secondary { background-color: var(--stitch-secondary); }
+.bg-secondary-container { background-color: var(--stitch-secondary-container); }
+.bg-secondary-fixed { background-color: var(--stitch-secondary-fixed); }
+.bg-error { background-color: var(--stitch-error); }
+
+.hover\:bg-surface-container:hover { background-color: var(--stitch-surface-container); }
+.hover\:bg-surface-container-low:hover { background-color: var(--stitch-surface-container-low); }
+.hover\:bg-primary-container:hover { background-color: var(--stitch-primary-container); }
+
+.text-on-surface { color: var(--stitch-on-surface); }
+.text-on-surface-variant { color: var(--stitch-on-surface-variant); }
+.text-on-primary { color: var(--stitch-on-primary); }
+.text-on-primary-fixed { color: var(--stitch-on-primary-fixed); }
+.text-on-secondary { color: var(--stitch-on-secondary); }
+.text-on-secondary-fixed { color: var(--stitch-on-secondary-fixed); }
+.text-primary { color: var(--stitch-primary); }
+.text-secondary { color: var(--stitch-secondary); }
+.text-outline { color: var(--stitch-outline); }
+
+.border-outline-variant { border-color: var(--stitch-outline-variant); }
+
+.font-headline-lg { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.75rem; line-height: 2.25rem; letter-spacing: -0.02em; }
+.font-headline-md { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.375rem; line-height: 1.875rem; }
+.font-headline-sm { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.125rem; line-height: 1.625rem; }
+.font-body-md { font-family: 'Inter', sans-serif; font-size: 0.9375rem; line-height: 1.5rem; }
+.font-body-sm { font-family: 'Inter', sans-serif; font-size: 0.8125rem; line-height: 1.25rem; }
+.font-label-md { font-family: 'Inter', sans-serif; font-size: 0.8125rem; line-height: 1rem; }
+.font-label-sm { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; line-height: 0.875rem; letter-spacing: 0.04em; }
+.font-code-inline { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
+
+/* Obsidian Rich Formatting & Callouts */
+.callout-pink {
+  background-color: #fdf2f8;
+  border-left: 4px solid #db2777;
+  border-radius: 0 12px 12px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  color: #831843;
+}
+.dark .callout-pink, [data-theme="dark"] .callout-pink, .bg-\[\#0D0F12\] .callout-pink {
+  background-color: rgba(219, 39, 119, 0.12);
+  border-left-color: #f472b6;
+  color: #fbcfe8;
+}
+
+.callout-blue {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-left: 4px solid #2563eb;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  color: #1e3a8a;
+  font-family: 'JetBrains Mono', monospace;
+}
+.dark .callout-blue, [data-theme="dark"] .callout-blue, .bg-\[\#0D0F12\] .callout-blue {
+  background-color: rgba(37, 99, 235, 0.12);
+  border-color: rgba(96, 165, 250, 0.3);
+  border-left-color: #60a5fa;
+  color: #bfdbfe;
+}
+
+/* CodeMirror Obsidian Line Decorations */
+.cm-line.cm-callout-pink-line {
+  background-color: #fbcfe8 !important; /* Richer, darker pink */
+  border-left: 5px solid #be185d !important;
+  padding-left: 14px !important;
+  color: #701a75 !important;
+  border-radius: 0 4px 4px 0;
+}
+.cm-line.cm-callout-pink-line * {
+  color: #701a75 !important;
+  font-weight: 500;
+}
+.dark .cm-line.cm-callout-pink-line, [data-theme="dark"] .cm-line.cm-callout-pink-line, .bg-\[\#0D0F12\] .cm-line.cm-callout-pink-line {
+  background-color: rgba(219, 39, 119, 0.30) !important;
+  border-left: 5px solid #f472b6 !important;
+  color: #fdf2f8 !important;
+}
+.dark .cm-line.cm-callout-pink-line *, [data-theme="dark"] .cm-line.cm-callout-pink-line *, .bg-\[\#0D0F12\] .cm-line.cm-callout-pink-line * {
+  color: #fdf2f8 !important;
+}
+
+.cm-line.cm-code-blue-line {
+  background-color: #bfdbfe !important; /* Richer, darker blue */
+  border-left: 5px solid #1d4ed8 !important;
+  padding-left: 14px !important;
+  color: #0f172a !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  border-radius: 0 4px 4px 0;
+}
+.cm-line.cm-code-blue-line * {
+  color: #0f172a !important;
+  font-weight: 500;
+}
+.dark .cm-line.cm-code-blue-line, [data-theme="dark"] .cm-line.cm-code-blue-line, .bg-\[\#0D0F12\] .cm-line.cm-code-blue-line {
+  background-color: rgba(37, 99, 235, 0.32) !important;
+  border-left: 5px solid #60a5fa !important;
+  color: #f0f9ff !important;
+}
+.dark .cm-line.cm-code-blue-line *, [data-theme="dark"] .cm-line.cm-code-blue-line *, .bg-\[\#0D0F12\] .cm-line.cm-code-blue-line * {
+  color: #f0f9ff !important;
+}
+
+.cm-heading-1-line {
+  font-size: 1.65rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.4 !important;
+  padding-top: 8px !important;
+  padding-bottom: 4px !important;
+  letter-spacing: -0.02em !important;
+}
+
+.cm-heading-2-line {
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.4 !important;
+  padding-top: 6px !important;
+  padding-bottom: 2px !important;
+}
+
+/* ============================================================
+   CodeMirror 6 Live Preview: Wikilink Interactive Pill Widgets
+   ============================================================ */
+
+.cm-link-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 1px 7px !important;
+  margin: 0 2px !important;
+  border-radius: 5px !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  font-size: 11.5px !important;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace !important;
+  cursor: pointer !important;
+  vertical-align: baseline !important;
+  line-height: 1.35 !important;
+  text-decoration: none !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+  transition: all 0.15s ease-in-out !important;
+  box-sizing: border-box !important;
+}
+
+.cm-link-pill .cm-link-pill-symbol {
+  opacity: 0.85 !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important;
+}
+
+.cm-link-pill .cm-link-pill-text {
+  font-weight: 500 !important;
+  text-decoration: underline !important;
+  text-decoration-style: dotted !important;
+  text-underline-offset: 2px !important;
+  letter-spacing: -0.01em !important;
+}
+
+.cm-link-pill * {
+  color: inherit !important;
+}
+
+/* --- Dark Themes (Carbon, Dracula, Nord, Default) --- */
+.cm-link-pill-back,
+.dark-theme .cm-link-pill-back,
+[data-theme="carbon"] .cm-link-pill-back,
+[data-theme="dracula"] .cm-link-pill-back,
+[data-theme="nord"] .cm-link-pill-back {
+  background-color: rgba(51, 65, 85, 0.45) !important;
+  border-color: rgba(148, 163, 184, 0.25) !important;
+  color: #94a3b8 !important;
+}
+.cm-link-pill-back:hover,
+.dark-theme .cm-link-pill-back:hover {
+  background-color: rgba(71, 85, 105, 0.6) !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+  color: #f1f5f9 !important;
+}
+
+.cm-link-pill-front,
+.dark-theme .cm-link-pill-front {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  color: #6ee7b7 !important;
+}
+.cm-link-pill-front:hover,
+.dark-theme .cm-link-pill-front:hover {
+  background-color: rgba(16, 185, 129, 0.25) !important;
+  border-color: rgba(16, 185, 129, 0.55) !important;
+  color: #a7f3d0 !important;
+}
+
+.cm-link-pill-loop,
+.dark-theme .cm-link-pill-loop {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  color: #fcd34d !important;
+}
+.cm-link-pill-loop:hover,
+.dark-theme .cm-link-pill-loop:hover {
+  background-color: rgba(245, 158, 11, 0.25) !important;
+  border-color: rgba(245, 158, 11, 0.55) !important;
+  color: #fef3c7 !important;
+}
+
+.cm-link-pill-spider,
+.dark-theme .cm-link-pill-spider {
+  background-color: rgba(168, 85, 247, 0.15) !important;
+  border-color: rgba(168, 85, 247, 0.35) !important;
+  color: #d8b4fe !important;
+}
+.cm-link-pill-spider:hover,
+.dark-theme .cm-link-pill-spider:hover {
+  background-color: rgba(168, 85, 247, 0.25) !important;
+  border-color: rgba(168, 85, 247, 0.55) !important;
+  color: #f3e8ff !important;
+}
+
+.cm-link-pill-to,
+.dark-theme .cm-link-pill-to {
+  background-color: rgba(6, 182, 212, 0.15) !important;
+  border-color: rgba(6, 182, 212, 0.35) !important;
+  color: #67e8f9 !important;
+}
+.cm-link-pill-to:hover,
+.dark-theme .cm-link-pill-to:hover {
+  background-color: rgba(6, 182, 212, 0.25) !important;
+  border-color: rgba(6, 182, 212, 0.55) !important;
+  color: #cffafe !important;
+}
+
+.cm-link-pill-shift,
+.dark-theme .cm-link-pill-shift {
+  background-color: rgba(244, 63, 94, 0.15) !important;
+  border-color: rgba(244, 63, 94, 0.35) !important;
+  color: #fda4af !important;
+}
+.cm-link-pill-shift:hover,
+.dark-theme .cm-link-pill-shift:hover {
+  background-color: rgba(244, 63, 94, 0.25) !important;
+  border-color: rgba(244, 63, 94, 0.55) !important;
+  color: #ffe4e6 !important;
+}
+
+/* --- Light Themes (GitHub Clean Light, Obsidian Lumina) --- */
+.light-theme .cm-link-pill-back,
+[data-theme="github-light"] .cm-link-pill-back,
+[data-theme="obsidian-lumina"] .cm-link-pill-back {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+.light-theme .cm-link-pill-back:hover,
+[data-theme="github-light"] .cm-link-pill-back:hover,
+[data-theme="obsidian-lumina"] .cm-link-pill-back:hover {
+  background-color: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+.light-theme .cm-link-pill-front,
+[data-theme="github-light"] .cm-link-pill-front,
+[data-theme="obsidian-lumina"] .cm-link-pill-front {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  color: #047857 !important;
+}
+.light-theme .cm-link-pill-front:hover,
+[data-theme="github-light"] .cm-link-pill-front:hover,
+[data-theme="obsidian-lumina"] .cm-link-pill-front:hover {
+  background-color: rgba(16, 185, 129, 0.22) !important;
+  border-color: rgba(16, 185, 129, 0.55) !important;
+  color: #064e3b !important;
+}
+
+.light-theme .cm-link-pill-loop,
+[data-theme="github-light"] .cm-link-pill-loop,
+[data-theme="obsidian-lumina"] .cm-link-pill-loop {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  color: #b45309 !important;
+}
+.light-theme .cm-link-pill-loop:hover,
+[data-theme="github-light"] .cm-link-pill-loop:hover,
+[data-theme="obsidian-lumina"] .cm-link-pill-loop:hover {
+  background-color: rgba(245, 158, 11, 0.22) !important;
+  border-color: rgba(245, 158, 11, 0.55) !important;
+  color: #78350f !important;
+}
+
+.light-theme .cm-link-pill-spider,
+[data-theme="github-light"] .cm-link-pill-spider,
+[data-theme="obsidian-lumina"] .cm-link-pill-spider {
+  background-color: rgba(139, 92, 246, 0.12) !important;
+  border-color: rgba(139, 92, 246, 0.35) !important;
+  color: #6d28d9 !important;
+}
+.light-theme .cm-link-pill-spider:hover,
+[data-theme="github-light"] .cm-link-pill-spider:hover,
+[data-theme="obsidian-lumina"] .cm-link-pill-spider:hover {
+  background-color: rgba(139, 92, 246, 0.22) !important;
+  border-color: rgba(139, 92, 246, 0.55) !important;
+  color: #4c1d95 !important;
+}
+
+.light-theme .cm-link-pill-to,
+[data-theme="github-light"] .cm-link-pill-to,
+[data-theme="obsidian-lumina"] .cm-link-pill-to {
+  background-color: rgba(6, 182, 212, 0.12) !important;
+  border-color: rgba(6, 182, 212, 0.35) !important;
+  color: #0e7490 !important;
+}
+.light-theme .cm-link-pill-to:hover,
+[data-theme="github-light"] .cm-link-pill-to:hover,
+[data-theme="obsidian-lumina"] .cm-link-pill-to:hover {
+  background-color: rgba(6, 182, 212, 0.22) !important;
+  border-color: rgba(6, 182, 212, 0.55) !important;
+  color: #164e63 !important;
+}
+
+.light-theme .cm-link-pill-shift,
+[data-theme="github-light"] .cm-link-pill-shift,
+[data-theme="obsidian-lumina"] .cm-link-pill-shift {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+  color: #b91c1c !important;
+}
+.light-theme .cm-link-pill-shift:hover,
+[data-theme="github-light"] .cm-link-pill-shift:hover,
+[data-theme="obsidian-lumina"] .cm-link-pill-shift:hover {
+  background-color: rgba(239, 68, 68, 0.22) !important;
+  border-color: rgba(239, 68, 68, 0.55) !important;
+  color: #7f1d1d !important;
+}
+
+
+
+
