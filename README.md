@@ -1,3 +1,4 @@
+
 # <p align="center"><img src="resources/icon.svg" width="64" height="64" alt="Neural Genesis" /><br/>Neural Genesis</p>
 
 <p align="center">
@@ -11,6 +12,11 @@
   <img src="https://img.shields.io/badge/CodeMirror-6-black?style=flat-square" alt="CodeMirror" />
   <img src="https://img.shields.io/badge/Security-AES--256--GCM-22c55e?style=flat-square" alt="AES-256-GCM" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="MIT License" />
+  <a href="https://github.com/ncrobin777/Neural-Genesis/releases"><img src="https://img.shields.io/github/v/release/ncrobin777/Neural-Genesis?color=emerald&style=flat-square" alt="Latest Release" /></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/ncrobin777/Neural-Genesis/releases/latest"><strong>⬇️ Download Windows Installer (.exe)</strong></a>
 </p>
 
 ---
